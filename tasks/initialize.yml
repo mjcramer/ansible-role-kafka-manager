@@ -1,0 +1,16 @@
+# roles/kafka-manager/tasks/initialize.yml
+---
+- name: initialize | create folders
+  file: 
+    path: "{{ item }}"
+    state: directory 
+    recurse: yes 
+    owner: "{{ kafka.user }}"
+    group: "{{ kafka.group }}"
+  with_items: "{{ kafka.config.data_dirs }}"
+
+- name: initialize | start kafka
+  service: 
+    name: kafka
+    enabled: yes
+    state: started

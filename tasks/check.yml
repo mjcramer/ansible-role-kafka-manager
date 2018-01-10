@@ -1,0 +1,6 @@
+# roles/kafka-manager/tasks/check.yml
+---
+- name: check port
+  wait_for:
+    port: "{{ kafka_port }}"
+    delay: 10

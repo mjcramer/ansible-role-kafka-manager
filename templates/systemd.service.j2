@@ -1,0 +1,27 @@
+#
+# {{ ansible_managed }}
+#
+
+[Unit]
+Description=Apache Kafka Broker
+Documentation=http://kafka.apache.org/
+Requires=network.target
+After=network.target
+ConditionPathExists={{ kafka.conf_dir }}/server.properties 
+ConditionPathExists={{ kafka.lib_dir }}
+ConditionPathExists={{ kafka.log_dir }}
+
+[Service]
+Type=simple
+User={{ kafka.user }}
+Group={{ kafka.group }}
+SyslogIdentifier=kafka
+EnvironmentFile={{ kafka.env_file }}
+ExecStart={{ kafka.home_dir }}/bin/kafka-server-start.sh {{ kafka.conf_dir }}/server.properties 
+WorkingDirectory={{ kafka.lib_dir }}
+Restart=on-failure
+TImeoutStartSec=60s
+TimeoutStopSec=30s
+
+[Install]
+WantedBy=multi-user.target

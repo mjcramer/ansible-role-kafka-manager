@@ -1,0 +1,4 @@
+# roles/kafka-manager/meta/main.yml
+---
+dependencies:
+  - role: java

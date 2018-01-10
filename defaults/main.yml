@@ -1,0 +1,18 @@
+# roles/kafka-manager/defaults/main.yml
+---
+zookeeper_hosts: localhost:2181
+
+# Server deployment parameters - these control how kafka is deployed
+kafka_manager_version: 0.9.0.0
+kafka_manager_name: "kafka_{{ scala_version }}-{{ kafka_version }}"
+kafka_manager_archive: "{{ kafka_name }}.tgz"
+kafka_manager_download_path: "{{ apache_mirror }}/kafka/{{ kafka_version }}"
+kafka_manager_download_checksum: "sha256:6e20a86cb1c073b83cede04ddb2e92550c77ae8139c4affb5d6b2a44447a4028"
+# kafka_download_checksum: "sha256:f0f5e3d1234fb1a5d8c993afaef0c16eb43618166416bb57fd0593e1cee8780a
+kafka_manager_user: kafka
+kafka_manager_group: pipeline
+
+# Server environment configuration - this controls how kafka server is run
+kafka_manager_jvm_heap_init: 256m
+kafka_manager_jvm_heap_max: 512m
+

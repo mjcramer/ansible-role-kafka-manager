@@ -1,0 +1,9 @@
+# roles/kafka-manager/handlers/main.yml
+---
+- include: handlers/system.yml
+  static: yes
+
+- name: restart kafka
+  service: 
+    name: kafka 
+    state: restarted
